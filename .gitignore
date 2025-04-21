@@ -17,3 +17,6 @@
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
+
+# Ignorar todos los archivos .log en cualquier parte del proyecto
+*.log

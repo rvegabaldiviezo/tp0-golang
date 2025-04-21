@@ -1,18 +1,10 @@
-package utils
+package connections
 
 import (
 	"encoding/json"
 	"log"
 	"net/http"
 )
-
-type Mensaje struct {
-	Mensaje string `json:"mensaje"`
-}
-
-type Paquete struct {
-	Valores []string `json:"valores"`
-}
 
 func RecibirPaquetes(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)

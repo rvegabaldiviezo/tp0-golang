@@ -1,15 +1,11 @@
-package utils
+package connections
 
 import (
-	"bufio"
 	"bytes"
-	"client/globals"
 	"encoding/json"
 	"fmt"
-	"io"
 	"log"
 	"net/http"
-	"os"
 )
 
 type Mensaje struct {
@@ -18,28 +14,6 @@ type Mensaje struct {
 
 type Paquete struct {
 	Valores []string `json:"valores"`
-}
-
-func IniciarConfiguracion(filePath string) *globals.Config {
-	var config *globals.Config
-	configFile, err := os.Open(filePath)
-	if err != nil {
-		log.Fatal(err.Error())
-	}
-	defer configFile.Close()
-
-	jsonParser := json.NewDecoder(configFile)
-	jsonParser.Decode(&config)
-
-	return config
-}
-
-func LeerConsola() {
-	// Leer de la consola
-	reader := bufio.NewReader(os.Stdin)
-	log.Println("Ingrese los mensajes")
-	text, _ := reader.ReadString('\n')
-	log.Print(text)
 }
 
 func GenerarYEnviarPaquete() {
@@ -79,13 +53,4 @@ func EnviarPaquete(ip string, puerto int, paquete Paquete) {
 	}
 
 	log.Printf("respuesta del servidor: %s", resp.Status)
-}
-
-func ConfigurarLogger() {
-	logFile, err := os.OpenFile("tp0.log", os.O_CREATE|os.O_APPEND|os.O_RDWR, 0666)
-	if err != nil {
-		panic(err)
-	}
-	mw := io.MultiWriter(os.Stdout, logFile)
-	log.SetOutput(mw)
 }
