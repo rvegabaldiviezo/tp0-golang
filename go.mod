@@ -1,5 +1,5 @@
 module github.com/rvegabaldiviezo/tp0-golang
 
-go 1.24.2
+go 1.24
 
-replace github.com/rvegabaldiviezo/tp0-golang/client => ./client
+// replace github.com/rvegabaldiviezo/tp0-golang/client => ./client
