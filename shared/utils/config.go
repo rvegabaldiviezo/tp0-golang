@@ -26,7 +26,8 @@ import (
 // 	return config
 // }
 
-func IniciarConfiguracion[T any](filePath string) *T {
+func IniciarConfiguracion[T any]() *T {
+	filePath := "configs/config.json"
 	var config T
 	configFile, err := os.Open(filePath)
 	if err != nil {
